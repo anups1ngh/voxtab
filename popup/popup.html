@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --surface: #1e293b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --border: #334155;
+    }
+    
+    body {
+      width: 320px;
+      margin: 0;
+      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .badge {
+      background: rgba(99, 102, 241, 0.2);
+      color: #818cf8;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .setting-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      background: var(--surface);
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .setting-label {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .setting-stack {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+      background: var(--surface);
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .setting-stack label {
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 10px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* Modern Select Dropdown */
+    select {
+      width: 100%;
+      background: var(--bg);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 13px;
+      outline: none;
+      cursor: pointer;
+      appearance: none;
+    }
+    select:focus { border-color: var(--accent); }
+
+    /* Custom Toggle Switch */
+    .switch {
+      position: relative;
+      display: inline-block;
+      width: 44px;
+      height: 24px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: var(--border);
+      transition: .3s;
+      border-radius: 24px;
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 18px;
+      width: 18px;
+      left: 3px;
+      bottom: 3px;
+      background-color: white;
+      transition: .3s;
+      border-radius: 50%;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    input:checked + .slider { background-color: var(--accent); }
+    input:checked + .slider:before { transform: translateX(20px); }
+
+    /* Custom Range Slider */
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      background: transparent;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      cursor: pointer;
+      margin-top: -6px;
+      box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 4px;
+      cursor: pointer;
+      background: var(--border);
+      border-radius: 4px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 12px;
+      transition: color 0.2s;
+    }
+    .footer a:hover { color: var(--text-main); }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h2>VoxTab</h2>
+    <span class="badge">Premium</span>
+  </div>
+  
+  <div class="setting-row">
+    <span class="setting-label">Enable Extension</span>
+    <label class="switch">
+      <input type="checkbox" id="extensionEnabled">
+      <span class="slider"></span>
+    </label>
+  </div>
+  
+  <div class="setting-row">
+    <span class="setting-label">Show Hover Menu</span>
+    <label class="switch">
+      <input type="checkbox" id="hoverWidgetEnabled">
+      <span class="slider"></span>
+    </label>
+  </div>
+
+  <div class="setting-stack">
+    <label for="voiceSelect">Active Voice Engine</label>
+    <select id="voiceSelect">
+      <option value="">System Default</option>
+    </select>
+  </div>
+
+  <div class="setting-stack">
+    <label><span>Reading Speed</span> <span id="rateLabel">1.0x</span></label>
+    <input type="range" id="speechRate" min="0.5" max="2.5" step="0.1" value="1">
+  </div>
+
+  <div class="footer">
+    <a href="#" id="openOptions">Advanced Settings &rarr;</a>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

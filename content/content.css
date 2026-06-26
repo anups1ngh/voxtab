@@ -1,0 +1,7 @@
+/* Highlights the text currently being read in the host DOM */
+.voxtab-active-highlight {
+  background-color: rgba(250, 204, 21, 0.4) !important;
+  border-bottom: 2px solid #eab308 !important;
+  color: inherit !important;
+  transition: background-color 0.2s ease;
+}
